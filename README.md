@@ -7,7 +7,7 @@ A data warehouse project of Toronto Shared Bike using Oracle database.
     - [Logical Design](#logical-design)
     - [Physical Implementation](#physical-implementation)
     - [Connect with Oracle](#connect-with-oracle)
-    - [ETL Pipeline](#etl-pipeline)
+  - [ETL Pipeline](#etl-pipeline)
 
 ---
 
@@ -41,7 +41,11 @@ docker compose up -d
 
 ---
 
-### ETL Pipeline
+## ETL Pipeline
+
+- Diagram
+
+![pic](./pic/etl_workflow.gif)
 
 - Batch job: ETL
 
@@ -49,10 +53,24 @@ docker compose up -d
 docker exec -it oracle19cDB bash /opt/oracle/scripts/etl/multiple_year_etl_job.sh 2019 2022
 ```
 
+![pic](./pic/etl01.png)
 
+![pic](./pic/etl02.png)
+
+![pic](./pic/etl03.png)
 
 - Refresh Materialized view
 
 ```sh
 docker exec -it oracle19cDB bash /opt/oracle/scripts/mv/mv_refresh.sh
 ```
+
+![pic](./pic/refresh_mv.png)
+
+- Export MV
+
+```sh
+docker exec -it oracle19cDB bash /opt/oracle/scripts/export/export.sh
+```
+
+![pic](./pic/export01.png)

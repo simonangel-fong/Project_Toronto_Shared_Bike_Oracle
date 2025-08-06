@@ -21,6 +21,7 @@ services:
     volumes:
       - ./scripts:/opt/oracle/scripts/ # scripts
       - ../data:/data # source data
+      - ../export:/export # export data
       - oracledata:/opt/oracle/oradata # persist data
       # - oraclebackup:/opt/oracle/fast_recovery_area # backup
     networks:
@@ -33,3 +34,11 @@ services:
       timeout: 10s
       retries: 30
       start_period: 2m
+    deploy:
+      resources:
+        limits:
+          cpus: "8"
+          memory: 8192M
+        reservations:
+          cpus: "4"
+          memory: 6144M
