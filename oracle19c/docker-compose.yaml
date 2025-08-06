@@ -1,9 +1,8 @@
-# docker compose for development Windows OS
 name: toronto-shared-bike-oracle
 
 volumes:
   oracledata:
-  oraclebackup:
+  # oraclebackup:
 
 networks:
   public-net:
@@ -29,16 +28,9 @@ services:
     ports:
       - "1521:1521"
     healthcheck:
-      test: ["CMD-SHELL", "/project/scripts/healthcheck.sh"]
+      test: ["CMD-SHELL", "/opt/oracle/scripts/healthcheck.sh"]
       interval: 30s
       timeout: 10s
       retries: 30
       start_period: 2m
-    deploy:
-      resources:
-        limits:
-          cpus: "8"
-          memory: 8192M
-        reservations:
-          cpus: "4"
-          memory: 6144M
+    
